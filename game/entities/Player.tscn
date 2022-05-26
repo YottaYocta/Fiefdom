@@ -1,0 +1,203 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/spritesheets/vassal.png" type="Texture" id=1]
+[ext_resource path="res://game/entities/Player.gd" type="Script" id=2]
+[ext_resource path="res://game/entities/EntityHitBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/entities/EntityHurtBox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 352, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 384, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 416, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 608, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 640, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 672, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": false,
+"name": "attack",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": false,
+"name": "die",
+"speed": 3.0
+} ]
+
+[sub_resource type="CapsuleShape" id=10]
+radius = 0.0720584
+height = 0.0252118
+
+[sub_resource type="Animation" id=24]
+resource_name = "Damaged"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.12, 0.4 ),
+"transitions": PoolRealArray( 1, 0.659754, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -11.117, 0, 0 ), Vector3( -11.117, 1, 0 ), Vector3( -11.117, -1, 0 ), Vector3( -11.117, 1, 0 ), Vector3( -11.117, -1, 0 ), Vector3( -11.117, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite3D:shaded")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.2, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -11.117, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite3D:shaded")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="Player" type="KinematicBody" groups=["player"]]
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+shaded = true
+frames = SubResource( 9 )
+animation = "idle"
+frame = 2
+playing = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 10 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.981236, 0.192813, 0, -0.192813, 0.981236, 0, 0.378323, 1.55804 )
+fov = 100.0
+size = 4.34832
+
+[node name="EntityHitBox" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.0632119, 0, 0, 0, 0.086, 0, 0, 0, 0.053, 0, 0, 0 )
+collision_mask = 0
+
+[node name="EntityHurtBox" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.13, 0, 0, 0, 0.085, 0, 0, 0, 0.13, 0, 0, 0 )
+collision_mask = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Damaged = SubResource( 24 )
+anims/RESET = SubResource( 25 )
+
+[connection signal="area_entered" from="EntityHitBox" to="." method="_on_EntityHitBox_area_entered"]

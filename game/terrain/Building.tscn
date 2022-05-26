@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/models/castle.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0.352941, 0.352941, 1 )
+metallic_specular = 0.0
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.396293, 0.83633, 0.714933 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.45336, 0.389068, 0.26461 )
+
+[node name="Building" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.108252, 0.85796, 0.196083 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.652582, 0.435752, 0.0493471 )
+shape = SubResource( 3 )
