@@ -22,6 +22,8 @@ var target: KinematicBody
 onready var hurtbox = $EntityHurtBox
 onready var animated_sprite = $AnimatedSprite3D
 onready var animation_player = $AnimationPlayer
+onready var enemy_information = $EntityInformation
+onready var health_bar = $HealthBar
 
 func _ready():
 	animated_sprite.animation = 'walk'
@@ -80,8 +82,17 @@ func _on_SeekArea_body_exited(body:Node):
 		target = null
 
 func _on_EntityHitBox_area_entered(area:Area):
-	if area.is_in_group('hurtbox'):
+	if area is EntityHurtBox:
+		enemy_information.take_damage(area.damage)
 		animation_player.play('Damage Flash')
-		velocity -= ((area.global_transform.origin - global_transform.origin + Vector3(0, -0.08, 0)).normalized()) * collision_impulse
-		
+		var direction = (area.global_transform.origin - global_transform.origin).normalized() * collision_impulse
+		velocity.x -= direction.x
+		velocity.z -= direction.z
+		velocity.y += (Vector3.UP * collision_impulse).y
 
+func _on_EntityInformation_health_changed(old_health: int, new_health: int):
+	health_bar.interpolate(old_health as float / enemy_information.max_health, new_health as float / enemy_information.max_health)
+
+
+func _on_EntityInformation_dead():
+	queue_free()

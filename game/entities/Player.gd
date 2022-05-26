@@ -20,6 +20,8 @@ var state: int = PLAYERSTATE.MOVE
 onready var hurtbox := $EntityHurtBox
 onready var hitbox := $EntityHitBox
 onready var animation_player := $AnimationPlayer
+onready var player_information := $EntityInformation
+onready var health_bar := $HealthBar
 
 func _ready():
 	$AnimatedSprite3D.animation = 'walk'
@@ -74,5 +76,9 @@ func _process(delta):
 		last_direction = velocity.normalized()
 
 func _on_EntityHitBox_area_entered(area:Area):
-	if area.is_in_group('hurtbox'):
+	if area is EntityHurtBox:
+		player_information.take_damage(area.damage)
 		animation_player.play('Damaged')
+		
+func _on_EntityInformation_health_changed(old_health: int, new_health: int):
+	health_bar.interpolate(old_health as float / player_information.max_health, new_health as float / player_information.max_health)

@@ -9,18 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area",
+"class": "EntityHitBox",
+"language": "GDScript",
+"path": "res://game/entities/EntityHitBox.gd"
+}, {
+"base": "Area",
+"class": "EntityHurtBox",
+"language": "GDScript",
+"path": "res://game/entities/EntityHurtBox.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 } ]
 _global_script_class_icons={
+"EntityHitBox": "",
+"EntityHurtBox": "",
 "GitAPI": ""
 }
 
 [application]
 
 config/name="Fiefdom"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [gdnative]
