@@ -4,10 +4,12 @@ onready var animation_player = $AnimationPlayer
 
 signal spawn
 
+func _ready():
+	visible = false
 
 func beam_at(position: Vector3):
-	global_transform.origin.x = position.x
-	global_transform.origin.z = position.z
+	transform.origin.x = position.x
+	transform.origin.z = position.z
 	animation_player.play("SpawnBeam")
 
 

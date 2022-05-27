@@ -12,6 +12,31 @@
 [sub_resource type="SphereShape" id=15]
 radius = 1.00982
 
+[sub_resource type="AtlasTexture" id=11]
+flags = 3
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 3
+atlas = ExtResource( 2 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 3
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 3
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 3
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
 [sub_resource type="AtlasTexture" id=4]
 flags = 3
 atlas = ExtResource( 3 )
@@ -42,33 +67,13 @@ flags = 3
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=11]
-flags = 3
-atlas = ExtResource( 2 )
-region = Rect2( 0, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 3
-atlas = ExtResource( 2 )
-region = Rect2( 16, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 3
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 3
-atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 3
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 16 )
-
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": false,
+"name": "attack",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 4 ), SubResource( 3 ), SubResource( 5 ), SubResource( 7 ) ],
 "loop": true,
 "name": "walk",
@@ -78,11 +83,6 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 2.0
-}, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": false,
-"name": "attack",
-"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape" id=14]
@@ -154,6 +154,7 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource( 4 )
 dash_threshold = 0.2
+acceleration = 7
 collision_impulse = 3
 
 [node name="SeekArea" type="Area" parent="."]
@@ -162,10 +163,11 @@ collision_impulse = 3
 shape = SubResource( 15 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-billboard = 2
+billboard = 1
 shaded = true
 frames = SubResource( 13 )
 animation = "walk"
+frame = 2
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -193,7 +195,7 @@ max_health = 5
 health = 5
 
 [node name="HealthBar" parent="." instance=ExtResource( 8 )]
-transform = Transform( 7, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0863253, 0 )
+transform = Transform( 0.6, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.106553, 0 )
 
 [connection signal="body_entered" from="SeekArea" to="." method="_on_SeekArea_body_entered"]
 [connection signal="body_exited" from="SeekArea" to="." method="_on_SeekArea_body_exited"]

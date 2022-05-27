@@ -13,47 +13,37 @@ ground_horizon_color = Color( 0, 0, 0, 1 )
 [sub_resource type="Environment" id=2]
 background_mode = 1
 background_sky = SubResource( 1 )
-background_color = Color( 0.0745098, 0.0588235, 0.101961, 1 )
-background_energy = 0.0
+background_color = Color( 0.0470588, 0.0352941, 0.054902, 1 )
+background_energy = 2.0
 ambient_light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
-ambient_light_energy = 0.7
+ambient_light_energy = 0.3
 fog_enabled = true
-fog_color = Color( 0.054902, 0.0509804, 0.054902, 1 )
+fog_color = Color( 0.0470588, 0.0352941, 0.054902, 1 )
 fog_sun_color = Color( 0, 0, 0, 1 )
 fog_depth_begin = 1.0
-fog_depth_end = 5.0
+fog_depth_end = 15.0
+fog_depth_curve = 2.07052
 fog_transmit_enabled = true
 
 [sub_resource type="Animation" id=3]
 resource_name = "Player Attack"
 length = 0.5
 step = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Camera:fov")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 90.0, 95.0, 90.0 ]
-}
 
 [node name="Map" type="Spatial"]
 script = ExtResource( 3 )
 enemy_scene = ExtResource( 4 )
 difficulty = 10
-camera_rotational_speed = 24.0
-camera_dist = 0.8
-camera_displacement = Vector3( 0, 0.2, 0.5 )
+camera_speed = 0.4
+camera_dist = 10.0
+camera_displacement = Vector3( 0, 0.3, 0.5 )
 
 [node name="BasicCastle" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0.189922, 0 )
+acceleration = 10
 dash_acceleration = 600
 
 [node name="RayCast" type="RayCast" parent="Player"]
@@ -61,19 +51,16 @@ enabled = true
 cast_to = Vector3( 0, 0.3, 1.5 )
 collision_mask = 4
 
-[node name="ViewTarget" type="Position3D" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+[node name="OmniLight" type="OmniLight" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.034, 0.1 )
+light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
+
+[node name="OmniLight2" type="OmniLight" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.034, -0.1 )
+light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
-
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 0.713635, -0.288782, 0.638224, -0.019863, 0.902367, 0.430511, -0.700236, -0.319905, 0.638224, 4, 3.012, 4 )
-visible = false
-light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
-light_energy = 0.5
-spot_range = 30.1104
-spot_angle = 81.6888
 
 [node name="EnemyTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -109,24 +96,19 @@ transform = Transform( -0.192539, 0, -0.981289, 0, 1, 0, 0.981289, 0, -0.192539,
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 3, 1, 3 )
+projection = 1
 fov = 90.0
+size = 5.0
+near = 0.01
+
+[node name="SpotLight" type="SpotLight" parent="Camera"]
+transform = Transform( 0.976726, 0.211862, -0.0334799, -0.146694, 0.77369, 0.616348, 0.156484, -0.597092, 0.786762, 0, 3, 0 )
+light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
+spot_range = 100.0
+spot_angle = 20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/Player Attack" = SubResource( 3 )
-
-[node name="Lights" type="Spatial" parent="."]
-
-[node name="OmniLight" type="OmniLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00903, 0.364732, -2.94833 )
-light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
-
-[node name="OmniLight2" type="OmniLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09016, 0.364732, 2.33291 )
-light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
-
-[node name="OmniLight3" type="OmniLight" parent="Lights"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45862, 0.364732, -0.0349171 )
-light_color = Color( 0.580392, 0.580392, 0.823529, 1 )
 
 [connection signal="attack" from="Player" to="." method="_on_Player_attack"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
