@@ -44,6 +44,7 @@ singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 
 collision=false
 lab=false
+layers=false
 
 [input]
 
@@ -78,6 +79,7 @@ attack={
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Enemy"
 3d_physics/layer_3="Environment"
+3d_physics/layer_4="Bounds"
 
 [physics]
 
