@@ -13,6 +13,7 @@ var rotation_actual := 0.0
 
 onready var player = $Player
 onready var spotlight = $Camera/SpotLight
+onready var camera_target = $Player/Position3D
 onready var camera_cast = $Player/RayCast
 onready var camera = $Camera
 onready var spawn_beam = $SpawnBeam
@@ -35,18 +36,14 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed('ui_left'):
-		rotation_target += 90
-	if Input.is_action_just_pressed('ui_right'):
-		rotation_target -= 90 
 
 	rotation_actual = lerp(rotation_actual, rotation_target, camera_friction) 
 	player.rotation.y = deg2rad(rotation_actual) 
 
 	var target_camera_location: Vector3 = (
-		player.global_transform.origin
-		+ camera_cast.cast_to.rotated(Vector3.UP, player.rotation.y)
+		player.global_transform.origin + camera_cast.cast_to.rotated(Vector3.UP, player.rotation.y)
 	)
+
 	spotlight.look_at(player.global_transform.origin, Vector3.UP)
 
 	var camera_difference = target_camera_location - camera.global_transform.origin
@@ -54,7 +51,7 @@ func _process(delta):
 		camera.global_transform.origin.linear_interpolate(
 			camera.global_transform.origin + camera_difference, camera_speed
 		),
-		player.global_transform.origin,
+		camera_target.global_transform.origin,
 		Vector3.UP
 	)
 

@@ -12,6 +12,36 @@
 [sub_resource type="SphereShape" id=15]
 radius = 1.00982
 
+[sub_resource type="AtlasTexture" id=1]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 3
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 3
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 3
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 3
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 3
+atlas = ExtResource( 3 )
+region = Rect2( 16, 16, 16, 16 )
+
 [sub_resource type="AtlasTexture" id=11]
 flags = 3
 atlas = ExtResource( 2 )
@@ -37,52 +67,22 @@ flags = 3
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=4]
-flags = 3
-atlas = ExtResource( 3 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 3
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 3
-atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 3
-atlas = ExtResource( 3 )
-region = Rect2( 16, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=1]
-flags = 3
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 3
-atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 16 )
-
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": false,
-"name": "attack",
-"speed": 5.0
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.0
 }, {
 "frames": [ SubResource( 4 ), SubResource( 3 ), SubResource( 5 ), SubResource( 7 ) ],
 "loop": true,
 "name": "walk",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "idle",
-"speed": 2.0
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": false,
+"name": "attack",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape" id=14]
@@ -154,7 +154,6 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource( 4 )
 dash_threshold = 0.2
-acceleration = 7
 collision_impulse = 3
 
 [node name="SeekArea" type="Area" parent="."]
@@ -167,7 +166,7 @@ billboard = 1
 shaded = true
 frames = SubResource( 13 )
 animation = "walk"
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

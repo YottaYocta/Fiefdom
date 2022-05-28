@@ -32,6 +32,21 @@ flags = 19
 atlas = ExtResource( 1 )
 region = Rect2( 160, 0, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=17]
+flags = 19
+atlas = ExtResource( 1 )
+region = Rect2( 608, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 19
+atlas = ExtResource( 1 )
+region = Rect2( 640, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 19
+atlas = ExtResource( 1 )
+region = Rect2( 672, 0, 32, 32 )
+
 [sub_resource type="AtlasTexture" id=1]
 flags = 19
 atlas = ExtResource( 1 )
@@ -51,21 +66,6 @@ region = Rect2( 256, 0, 32, 32 )
 flags = 19
 atlas = ExtResource( 1 )
 region = Rect2( 288, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 19
-atlas = ExtResource( 1 )
-region = Rect2( 608, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 19
-atlas = ExtResource( 1 )
-region = Rect2( 640, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 19
-atlas = ExtResource( 1 )
-region = Rect2( 672, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 19
@@ -94,15 +94,15 @@ animations = [ {
 "name": "attack",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "walk",
-"speed": 6.0
-}, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
 "loop": false,
 "name": "die",
 "speed": 3.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.0
 }, {
 "frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": true,
@@ -155,7 +155,6 @@ billboard = 1
 shaded = true
 frames = SubResource( 9 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
