@@ -24,6 +24,7 @@ onready var health_bar = $HealthBar
 
 func _ready():
 	animated_sprite.animation = "walk"
+	health_bar.value = enemy_information.health as float / enemy_information.max_health * 100
 	pass  # Replace with function body.
 
 
@@ -98,8 +99,8 @@ func _on_EntityHitBox_area_entered(area: Area):
 
 func _on_EntityInformation_health_changed(old_health: int, new_health: int):
 	health_bar.interpolate(
-		old_health as float / enemy_information.max_health,
-		new_health as float / enemy_information.max_health
+		old_health as float / enemy_information.max_health * 100,
+		new_health as float / enemy_information.max_health * 100
 	)
 
 

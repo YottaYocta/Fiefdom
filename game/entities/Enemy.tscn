@@ -7,7 +7,7 @@
 [ext_resource path="res://game/entities/EntityHitBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game/entities/EntityHurtBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://game/entities/EntityInformation.tscn" type="PackedScene" id=7]
-[ext_resource path="res://game/entities/ValueBar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game/entities/InterpolatedProgressBar.tscn" type="PackedScene" id=8]
 
 [sub_resource type="SphereShape" id=15]
 radius = 1.00982
@@ -167,7 +167,7 @@ billboard = 1
 shaded = true
 frames = SubResource( 13 )
 animation = "walk"
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

@@ -5,7 +5,7 @@
 [ext_resource path="res://game/entities/EntityHitBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/entities/EntityHurtBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/entities/EntityInformation.tscn" type="PackedScene" id=5]
-[ext_resource path="res://game/entities/ValueBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/entities/InterpolatedProgressBar.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 19
@@ -155,7 +155,7 @@ billboard = 1
 shaded = true
 frames = SubResource( 9 )
 animation = "idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -180,7 +180,8 @@ max_health = 30
 health = 30
 
 [node name="HealthBar" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.1, 0 )
+transform = Transform( 0.7, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.1, 0 )
+value = 80.0
 
 [connection signal="area_entered" from="EntityHitBox" to="." method="_on_EntityHitBox_area_entered"]
 [connection signal="health_changed" from="EntityInformation" to="." method="_on_EntityInformation_health_changed"]

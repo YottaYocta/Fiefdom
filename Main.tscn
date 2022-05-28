@@ -5,5 +5,4 @@
 [node name="Main" type="Spatial"]
 
 [node name="Map" parent="." instance=ExtResource( 1 )]
-camera_friction = 0.3
 camera_displacement = Vector3( 0, 0.4, 0.5 )

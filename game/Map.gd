@@ -1,15 +1,15 @@
 extends Spatial
 
 export(PackedScene) var enemy_scene: PackedScene
-export(int) var difficulty: int
-export(float) var camera_speed := 0.7
-export(float) var camera_friction := 0.1
-export(float) var camera_dist := 1.0
+export(int) var difficulty := 10
+export(float) var camera_speed := 0.5
+export(float) var camera_friction := 0.01
+export(float) var camera_dist := 10.0
 export(Vector3) var camera_displacement := Vector3(0, 0.2, 1)
 
 var spawn_location: Vector3
 var rotation_target := 45.0
-var rotation_acutal := 0.0
+var rotation_actual := 0.0
 
 onready var player = $Player
 onready var spotlight = $Camera/SpotLight
@@ -35,14 +35,13 @@ func _ready():
 
 
 func _process(delta):
-
 	if Input.is_action_just_pressed('ui_left'):
 		rotation_target += 90
 	if Input.is_action_just_pressed('ui_right'):
-		rotation_target -= 90
+		rotation_target -= 90 
 
-	rotation_acutal = lerp(rotation_acutal, rotation_target, camera_friction)
-	player.rotation.y = deg2rad(rotation_acutal)
+	rotation_actual = lerp(rotation_actual, rotation_target, camera_friction) 
+	player.rotation.y = deg2rad(rotation_actual) 
 
 	var target_camera_location: Vector3 = (
 		player.global_transform.origin
