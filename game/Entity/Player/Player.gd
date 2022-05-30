@@ -12,9 +12,13 @@ func _ready():
 
 func _process(delta):
 	var direction = Vector3.ZERO
-	if Input.is_action_pressed('ui_left'):
+	if Input.is_action_pressed('left'):
 		direction.x -= 1
-	if Input.is_action_pressed('ui_right'):
+	if Input.is_action_pressed('right'):
 		direction.x += 1
+	if Input.is_action_pressed('forward'):
+		direction.z -= 1
+	if Input.is_action_pressed('backward'):
+		direction.z += 1
 
 	velocity += direction.normalized().rotated(Vector3.UP, rotation.y) * stats.speed * delta
