@@ -9,32 +9,42 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area",
-"class": "EntityHitBox",
+"base": "KinematicBody",
+"class": "EntityBase",
 "language": "GDScript",
-"path": "res://game/entities/EntityHitBox.gd"
+"path": "res://game/Entity/EntityBase.gd"
 }, {
-"base": "Area",
-"class": "EntityHurtBox",
+"base": "Node",
+"class": "EntityStats",
 "language": "GDScript",
-"path": "res://game/entities/EntityHurtBox.gd"
+"path": "res://game/Entity/EntityStats.gd"
 }, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Resource",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://game/Stats.gd"
 } ]
 _global_script_class_icons={
-"EntityHitBox": "",
-"EntityHurtBox": "",
-"GitAPI": ""
+"EntityBase": "",
+"EntityStats": "",
+"GitAPI": "",
+"Stats": ""
 }
 
 [application]
 
 config/name="Fiefdom"
-run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Global.gd"
+PlayerStore="*res://game/Entity/Player/PlayerStore.tscn"
 
 [gdnative]
 
@@ -45,6 +55,7 @@ singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 collision=false
 lab=false
 layers=false
+theme=false
 
 [input]
 

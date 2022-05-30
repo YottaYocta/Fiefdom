@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/Testing/Block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/Entity/Player/Player.tscn" type="PackedScene" id=2]
+
+[node name="TestingGround" type="Spatial"]
+
+[node name="Block" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5, 0, 0, 0, 1, 0, 0, 0, 5, 0, -0.975521, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.93884, 0 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
